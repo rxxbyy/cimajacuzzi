@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
 
 {% block title %} Registro {% endblock %}
 
 {% block body %}
 <form action="{{ url_for('register') }}", method="POST">
     {{ reg_form.csrf_token }}
-    {{ reg_form.username.label }} {{ reg_form.username(size=20) }}
-    <input type="submit" value="Registrarme">
+    {{ render_field(reg_form.username) }}
+    {{ render_field(reg_form.password) }}
+    {{ render_field(reg_form.confirm) }}
+    <button type="submit">Registrarme</button>
 </form>
 {% endblock %}
