@@ -34,7 +34,7 @@ body {
     color: black;
     font-size: 28px;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
 }
 
 #vendedores {
@@ -54,4 +54,11 @@ body {
 .productos-ul{
     font-size: 24px;
     background-color: rgb(131, 216, 125);
+}
+
+.botones {
+    color: black;
+    font-size: 24px;
+    padding: 10px;
+    background-color: goldenrod;
 }
