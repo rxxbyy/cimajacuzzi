@@ -15,6 +15,12 @@ body {
     text-align: center;
 }
 
+#hello-user{
+    padding: 20px;
+    font: black;
+
+}
+
 #title-header a {
     text-decoration: none;
     color: white;
@@ -61,4 +67,9 @@ body {
     font-size: 24px;
     padding: 10px;
     background-color: goldenrod;
+}
+
+#error-message{
+    color: darkred;
+    padding: 15px;
 }

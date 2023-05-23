@@ -10,7 +10,7 @@
 {% block body %}
 
 {% if 'username' in session %}
-<p>Hello, {{ session['username'] }}</p>
+<p class="">Hello, {{ session['username'] }}</p>
 <section>
     <div id = "register">
         <a href="{{url_for('logout')}}">Cerrar sesión</a>

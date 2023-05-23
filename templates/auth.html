@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% from "form_macros.html" import render_field %}
 
-{% block title %} Registro {% endblock %}
+{% block title %} Autenticacion {% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
@@ -15,24 +15,26 @@
         <ul>
             {% for message in messages %}
             <li>
-                {{message}}
+                <div id="error-message">
+                    {{message}}
+                </div>
             </li>
             {% endfor %}
         </ul>
+        <br>
         {% endif %}
     {% endwith %}
 </section>
-<<<<<<< HEAD
 <section id = "register-section">
     <form action="{{ url_for('auth') }}", method="POST">
         {{ auth_form.csrf_token }}
         <br><br>
-        {{ render_field(auth_form.username) }}
+        {{ render_field(auth_form.seller_name) }}
         <br><br>
-        {{ render_field(auth_form.password) }}
+        {{ render_field(auth_form.seller_pass) }}
         <br><br>
         <ul class="form-messages">
-            {% for error in auth_form.password.errors %}
+            {% for error in auth_form.seller_pass.errors %}
             <li class="form-message">
                 {{ error }}
             </li>
@@ -44,20 +46,4 @@
     </form>
 </section>
 
-=======
-<form action="{{ url_for('auth') }}", method="POST">
-    {{ auth_form.csrf_token }}
-    {{ render_field(auth_form.seller_name) }}
-    {{ render_field(auth_form.seller_pass) }}
-    <ul class="form-messages">
-        {% for error in auth_form.seller_pass.errors %}
-        <li class="form-message">
-            {{ error }}
-        </li>
-        {% endfor %}
-    </ul>
-    {{ render_field(auth_form.confirm) }}
-    <button type="submit">Registrarme</button>
-</form>
->>>>>>> 60cb3e927166fb7035d776629fd942d7fef361a0
 {% endblock %}
