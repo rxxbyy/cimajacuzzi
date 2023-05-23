@@ -22,29 +22,6 @@
         {% endif %}
     {% endwith %}
 </section>
-<<<<<<< HEAD
-<section id = "register-section">
-    <form action="{{ url_for('auth') }}", method="POST">
-        {{ auth_form.csrf_token }}
-        <br><br>
-        {{ render_field(auth_form.username) }}
-        <br><br>
-        {{ render_field(auth_form.password) }}
-        <br><br>
-        <ul class="form-messages">
-            {% for error in auth_form.password.errors %}
-            <li class="form-message">
-                {{ error }}
-            </li>
-            {% endfor %}
-        </ul>
-        {{ render_field(auth_form.confirm) }}
-        <br><br>
-        <button type="submit" class ="botones">Registrarme</button>
-    </form>
-</section>
-
-=======
 <form action="{{ url_for('auth') }}", method="POST">
     {{ auth_form.csrf_token }}
     {{ render_field(auth_form.seller_name) }}
@@ -59,5 +36,4 @@
     {{ render_field(auth_form.confirm) }}
     <button type="submit">Registrarme</button>
 </form>
->>>>>>> 60cb3e927166fb7035d776629fd942d7fef361a0
 {% endblock %}
