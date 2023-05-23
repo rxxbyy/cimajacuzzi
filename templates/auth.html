@@ -15,13 +15,11 @@
         <ul>
             {% for message in messages %}
             <li>
-                <div id="error-message">
                     {{message}}
-                </div>
             </li>
+            <br>
             {% endfor %}
         </ul>
-        <br>
         {% endif %}
     {% endwith %}
 </section>
