@@ -3,8 +3,8 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 class AuthForm(FlaskForm):
-    username = StringField('Nombre de usuario', validators=[DataRequired()])
-    password = PasswordField('Contraseña', 
+    seller_name = StringField('Nombre de usuario', validators=[DataRequired()])
+    seller_pass = PasswordField('Contraseña', 
             validators=[DataRequired(),
                         Length(min=8),
                         EqualTo('confirm', message='Las contraseñas no coinciden')
