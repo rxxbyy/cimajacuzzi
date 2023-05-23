@@ -24,10 +24,10 @@
 </section>
 <form action="{{ url_for('auth') }}", method="POST">
     {{ auth_form.csrf_token }}
-    {{ render_field(auth_form.username) }}
-    {{ render_field(auth_form.password) }}
+    {{ render_field(auth_form.seller_name) }}
+    {{ render_field(auth_form.seller_pass) }}
     <ul class="form-messages">
-        {% for error in auth_form.password.errors %}
+        {% for error in auth_form.seller_pass.errors %}
         <li class="form-message">
             {{ error }}
         </li>

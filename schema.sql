@@ -10,8 +10,8 @@ CREATE TABLE seller (
     seller_id INT AUTO_INCREMENT PRIMARY KEY,
     seller_name VARCHAR(150) NOT NULL UNIQUE,
     seller_pass VARCHAR(100) NOT NULL,
-    start_hour INT DEFAULT 0 NOT NULL,
-    end_our INT DEFAULT 0 NOT NULL
+    start_hour INT DEFAULT 0,
+    end_our INT DEFAULT 0
 );
 
 CREATE TABLE product (
