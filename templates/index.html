@@ -9,12 +9,6 @@
 
 {% block body %}
 
-<section id = "top-bar">
-    <header id="title-header">
-        <a href="{{ url_for('index')}}">Cimajacuzzi</a>
-    </header>
-</section>
-
 {% if 'username' in session %}
 <p>Hello, {{ session['username'] }}</p>
 <section>
@@ -23,12 +17,16 @@
     </div>
 </section>
 {% else %}
+<<<<<<< HEAD
 <br>
 <section>
     <div id = "register">
         <a href="{{ url_for('register')}}">Autenticarse</a>
     </div>
 </section>
+=======
+<a href="{{ url_for('auth')}}">Registro</a>
+>>>>>>> 2950a01e0bd646f4ec950a2bba0446e3fb7a4eb9
 {% endif %}
 
 <section id = "vendedores">
