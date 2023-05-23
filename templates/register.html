@@ -13,11 +13,14 @@
         <a href="{{ url_for('index')}}">Cimajacuzzi</a>
     </header>
 </section>
-<form action="{{ url_for('register') }}", method="POST">
-    {{ reg_form.csrf_token }}
-    {{ render_field(reg_form.username) }}
-    {{ render_field(reg_form.password) }}
-    {{ render_field(reg_form.confirm) }}
-    <button type="submit">Registrarme</button>
-</form>
+<section id="register-section">
+    <form action="{{ url_for('register') }}", method="POST">
+        {{ reg_form.csrf_token }}
+        {{ render_field(reg_form.username) }}
+        {{ render_field(reg_form.password) }}
+        {{ render_field(reg_form.confirm) }}
+        <button type="submit">Registrarme</button>
+    </form>
+</section>
+
 {% endblock %}

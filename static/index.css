@@ -19,6 +19,39 @@ body {
     text-decoration: none;
     color: white;
     line-height: 100px;
+    font-size: 46px;
+}
+
+#register {
+    color: white;
+    font-size: 20px;
+    background-color: goldenrod;
+    text-align: center;
+    padding: 10px;
+}
+
+#register-section {
+    color: black;
+    font-size: 28px;
+    text-align: center;
+    padding: 20px;
+}
+
+#vendedores {
+    color: black;
+    padding: 30px;
+}
+
+#vendedores-title {
     font-size: 32px;
 }
 
+.vendedores-ul{
+    font-size: 28px;
+    background-color: rgba(80, 184, 72, 1);
+}
+
+.productos-ul{
+    font-size: 24px;
+    background-color: rgb(131, 216, 125);
+}
