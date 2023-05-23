@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-from app import app, get_db
+from app import app, get_db_connection
 
 def init_db():
     """ Initialize schemas on database """
     with app.app_context():
-        db = get_db()
+        conn = get_db_connection()
         with app.open_resource('schema.sql', mode='r') as FILE:
-            db.cursor().executescript(FILE.read())
-        db.commit()
+            conn.executescript(FILE.read())
+        conn.commit()
 
 # Make sure this script can only be executed directly 
 if __name__ == '__main__':
