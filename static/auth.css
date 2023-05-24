@@ -1,0 +1,64 @@
+#separator {
+    margin-bottom: 10em;
+}
+
+#auth-form {
+    background-color: #000;
+    margin: auto;
+
+    text-align: center;
+    padding: 1em;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+#auth-form h3 {
+    font-family: 'Prata';
+    font-size: 32px;
+    font-weight: normal;
+}
+
+#auth-form > * {
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+#auth-form label {
+    font-size: 24px;
+    text-align: left;
+}
+
+#auth-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 32px;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#auth-form > button[type='submit'] {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: #DD971A;
+    color: white;
+    font-size: 32px;
+    border: none;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#auth-form .form-messages {
+    list-style: none;
+}
+
+#auth-form .form-message {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 28px;
+}
