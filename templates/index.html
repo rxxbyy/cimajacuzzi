@@ -19,15 +19,26 @@
     <h3>Lista de vendedores</h3>
     <section id="sellers-list">
         {% if sellers %}
+            <ul class="sellers-ul">
             {% for seller in sellers %}
-                {{ seller.seller_name }}
-                <br>
+                <a href="{{ url_for('display_seller', seller_name=seller.seller_name) }}">
+                    <li class="seller-container">
+                        <header class="seller-header">
+                            <span class="seller-name">
+                                {{ seller.seller_name.title() }}
+                            </span>
+                            <div class="schedule">
+                                <span>Horario hoy</span> {{ seller.start_hour }} - {{ seller.end_hour }} hrs
+                            </div>
+                        </header>
+                    </li>
+                </a>
             {% endfor %}
+            </ul>
         {% else %}
-            <p>No hay vendedores para mostrar :(</p>
+            <p class="no-sellers">No hay vendedores para mostrar :(</p>
         {% endif %}
     </section>
 </section>
-
 
 {% endblock %}

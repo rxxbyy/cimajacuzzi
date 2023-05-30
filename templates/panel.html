@@ -3,10 +3,14 @@
 
 {% block title %} Panel {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='panel.css')}}">
+{% endblock %}
+
 {% block body %}
 <div class="separator"></div>
+<h2 id="greeting">Bienvenido, {{ session['username'].title() }}</h2>
 <section id="add-product-form">
-    <h2>Bienvenido, {{ session['username'] }}</h2>
     <form action="{{ url_for('add_product')}}" method="get">
         <h4>Añadir un producto</h4>
         {{ product_form.csrf_token }}
@@ -29,12 +33,17 @@
     </header>
     <div id="prod-list-container">
         <ul id="prod-list">
+            <h4>Tus productos</h4>
             {% for product in products %}
             <div class="product-container">
                 <a href="{{ url_for('edit_product', product_id=product['product_id'])}}">
                     <li class="product">
-                        {{ product['product_name'] }}
-                        {{ product['product_price'] }}
+                        <div class="product-price">
+                            {{ product['product_price'] }}$
+                        </div>
+                        <div class="product-name">
+                            {{ product['product_name'].upper() }} 
+                        </div>
                         {% if product['product_exists'] %}
                         ✅
                         {% else %}
@@ -42,7 +51,7 @@
                         {% endif %}
                     </li>
                 </a>
-                <a href="{{ url_for('delete_product', product_id=product['product_id']) }}">
+                <a href="{{ url_for('delete_product', product_id=product['product_id']) }}" class="delete-product">
                     🗑
                 </a>
             </div>
@@ -50,4 +59,6 @@
         </ul>
     </div>
 </aside>
+<div class="defloat"></div>
+<div class="separator"></div>
 {% endblock %}

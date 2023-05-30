@@ -2,16 +2,24 @@
 {% from "form_macros.html" import render_field %}
 
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='edit_product.css') }}">
+{% endblock %}
+
 {% block title %} Editar Producto {% endblock %}
 
 {% block body %}
-<form action="{{ url_for('edit_product', product_id=product_id)}}" method="post">
-    <h4>Editar un producto</h4>
-    {{ product_form.csrf_token }}
-    {{ render_field(product_form.product_name, value=cur_product.product_name) }}
-    {{ render_field(product_form.product_price, value=cur_product.product_price) }}
-    {{ render_field(product_form.product_desc, value=cur_product.product_desc) }}
-    {{ render_field(product_form.product_exists, value=cur_product.product_exists) }}
-    <button type="submit">Actualizar</button>
-</form>
+<div class="separator"></div>
+<section id="edit-prod-form">
+    <form action="{{ url_for('edit_product', product_id=product_id)}}" method="post">
+        <h4>Editar un producto</h4>
+        {{ product_form.csrf_token }}
+        {{ render_field(product_form.product_name, value=cur_product.product_name) }}
+        {{ render_field(product_form.product_price, value=cur_product.product_price) }}
+        {{ render_field(product_form.product_desc, value=cur_product.product_desc) }}
+        {{ render_field(product_form.product_exists, value=cur_product.product_exists) }}
+        <button type="submit">Actualizar</button>
+    </form>
+</section>
+<div class="separator"></div>
 {% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ seller_name.title() }}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='seller.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="separator"></div>
+<section id="seller-products">
+    <header>
+        <h2>Productos de {{ seller_name.title() }}</h2>
+    </header>
+    <section>
+        {% if seller_products %}
+        <ul id="prod-list">
+            {% for product in seller_products %}
+            <div class="product-container">
+                <li class="product">
+                    <div class="product-price">
+                        {{ product['product_price'] }}$
+                    </div>
+                    <div class="product-name">
+                        {{ product['product_name'].upper() }} 
+                    </div>
+                    {% if product['product_exists'] %}
+                    <span class="status">Disponible</span>
+                    {% else %}
+                    <span class="status">Agotado</span>
+                    {% endif %}
+                    <footer class="product-desc">
+                        <span>Descripción del producto</span>
+                        <p>
+                            {{ product['product_desc'] }}
+                        </p>
+                    </footer>
+                </li>
+            </div>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="product-container">
+            {{ seller_name.title() }} no cuenta con ningún producto en este momento.
+        </div>
+        {% endif %}
+
+    </section>
+</section>
+<div class="separator"></div>
+{% endblock %}

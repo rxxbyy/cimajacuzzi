@@ -1,0 +1,176 @@
+.defloat {
+    clear: both;
+}
+
+h2#greeting {
+    text-align: center;
+    padding: 1em;
+    font-size: 2em;
+    animation-name: faded;
+    animation-duration: 1s;
+}
+
+#add-product-form {
+    width: 40%;
+    background-color: #000;
+    padding: 2em;
+    float:left;
+}
+
+#add-product-form form > * {
+    display: block;
+    width: 100%;
+}
+
+#add-product-form form h4 {
+    text-align: center;
+}
+
+#add-product-form form label {
+    font-size: 1.2em;
+}
+
+#add-product-form form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 32px;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#add-product-form form label[for='product_exists'] {
+    display: block;
+    width: 7.5em;
+    float: left;
+}
+
+#add-product-form form input[type='checkbox'] {
+    appearance: none;
+    background-color: #000;
+    font: inherit;
+    color: #000;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #fff;
+    border-radius: 0.15em;
+    margin-bottom: 1em;
+    display: block;
+}
+
+#add-product-form form input[type='checkbox']:checked {
+    appearance: none;
+    background-color: #DD971A;
+    margin: 0;
+    font: inherit;
+    color: #000;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #fff;
+    border-radius: 0.15em;
+    transition: 500ms;
+    margin-bottom: 1em;
+}
+
+#add-product-form form button[type='submit'] {
+    padding: 0.1em;
+    border-radius: 0.5em;
+    background-color: #DD971A;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+#prod-aside {
+    background: #050505;
+    width: 50%;
+    padding: 2em;
+    float: right;
+}
+
+#prod-aside #setup-hour {
+    text-align: center;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#prod-aside #setup-hour form > input {
+    width: 20%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 10px;
+}
+
+#prod-aside #setup-hour form button[type='submit']
+{
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: #DD971A;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    margin: auto;
+}
+
+#prod-aside #setup-hour form > * {
+    display: block;
+}
+
+#prod-list {
+    list-style: none;
+}
+
+#prod-list a {
+    text-decoration: none;
+}
+
+.product-container {
+    display: block;
+    background: #080808;
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    display: inline;
+    background: #000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.product-name {
+    display: inline;
+    letter-spacing: 1.5px;
+}
+
+.delete-product {
+    color: white;
+}
+
+.product {
+    display: inline;
+    color: white;
+}

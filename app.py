@@ -31,15 +31,22 @@ def index() -> Callable:
     """ Route server endpoint. It serves 'index.html' template. """
     conn = get_db_connection()
 
-    sellers = conn.execute('SELECT seller_name FROM seller').fetchall()
-    print(sellers)
+    sellers = conn.execute('SELECT * FROM seller').fetchall()
+
     conn.commit()
     conn.close()
 
-    session['username'] = 'manuel'
-    session['user_id'] = 1
     return render_template('index.html', session=session, sellers=sellers)
 
+@app.route('/seller/<seller_name>')
+def display_seller(seller_name: str):
+    conn = get_db_connection()
+    seller_products = conn.execute('SELECT seller_name, product_name, product_price, product_desc, product_exists FROM seller INNER JOIN product ON seller_id=product_owner '
+                              'WHERE seller_name=?', (seller_name,)).fetchall()
+    conn.commit()
+    conn.close()
+    print(seller_products)
+    return render_template('seller.html', seller_products=seller_products, seller_name=seller_name)
 
 @app.route('/auth', methods=['GET', 'POST'])
 def auth() -> Callable:

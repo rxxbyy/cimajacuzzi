@@ -4,6 +4,34 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Prata&family=Vollkorn&display=swap');
 
+@keyframes faded {
+    from {
+        opacity: 0%;
+    } to {
+        opacity: 100%;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #DD971A;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #000;
+}
+
 .separator {
     margin-bottom: 5em;
 }
@@ -24,6 +52,8 @@ body {
     font-family: 'Prata', 'Times New Roman', 'Arial';
     background-color: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(3px);
+    animation-name: faded;
+    animation-duration: 0.5s;
 }
 
 #top-bar {
@@ -81,4 +111,11 @@ body {
 #menu-options li a:hover {
     color: rgba(255, 255, 255, 0.8);
     transition: 500ms;
+}
+
+#main-footer {
+    background: #000;
+    line-height: 5em;
+    text-align: center;
+    font-size: 110%;
 }

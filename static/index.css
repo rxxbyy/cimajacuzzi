@@ -30,4 +30,45 @@
     background-color: #000;
     min-height: 400px;
     padding: 2em;
+    font-size: 1.5em;
+}
+
+#sellers-list ul {
+    background: #0e0e0e;
+    padding: 10px;
+    border-radius: 10px;
+    list-style: none;
+}
+
+#sellers-list ul li {
+    padding: 10px;
+    margin-bottom: 0.5em;
+}
+
+#sellers-list ul li:hover {
+    background: #000;
+    transition: 500ms ease-in-out;
+}
+
+#sellers-list a {
+    text-decoration: none;
+    color: white;
+}
+
+#sellers-list ul li .seller-header {
+    display: block;
+    text-align: center;
+}
+
+#sellers-list ul li .seller-name {
+    font-size: 1em;
+}
+
+#sellers-list ul li .schedule span  {
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+
+.no-sellers {
+    text-align: center;
 }
