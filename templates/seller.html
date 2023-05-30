@@ -30,6 +30,15 @@
                     <span class="status">Disponible</span>
                     {% else %}
                     <span class="status">Agotado</span>
+                    <style>
+                        .product-container {
+                            opacity: 0.5;
+                        }
+
+                        .product-name {
+                            text-decoration: line-through;
+                        }
+                    </style>
                     {% endif %}
                     <footer class="product-desc">
                         <span>Descripción del producto</span>

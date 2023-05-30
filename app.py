@@ -12,9 +12,6 @@ from forms import AuthForm, ProductForm, HourForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_urlsafe())
 
-#
-# Setting server database
-#
 DATABASE_PATH = f'{os.path.abspath(os.getcwd())}/cimajacuzzi.db'
 
 def get_db_connection() -> object | Any:
@@ -23,9 +20,6 @@ def get_db_connection() -> object | Any:
     
     return conn
 
-# 
-# Flask Endpoints
-# 
 @app.route('/')
 def index() -> Callable:
     """ Route server endpoint. It serves 'index.html' template. """
@@ -41,8 +35,9 @@ def index() -> Callable:
 @app.route('/seller/<seller_name>')
 def display_seller(seller_name: str):
     conn = get_db_connection()
-    seller_products = conn.execute('SELECT seller_name, product_name, product_price, product_desc, product_exists FROM seller INNER JOIN product ON seller_id=product_owner '
-                              'WHERE seller_name=?', (seller_name,)).fetchall()
+    seller_products = conn.execute('SELECT seller_name, product_name, product_price, product_desc, '
+                                   'product_exists FROM seller INNER JOIN product ON seller_id=product_owner '
+                                   'WHERE seller_name=?', (seller_name,)).fetchall()
     conn.commit()
     conn.close()
     print(seller_products)
@@ -123,6 +118,9 @@ def add_product():
 
 @app.route('/panel/edit_product/<product_id>', methods=['GET', 'POST'])
 def edit_product(product_id: int):
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
     product_form = ProductForm(request.form)
 
     conn = get_db_connection()
@@ -151,6 +149,8 @@ def edit_product(product_id: int):
 
 @app.route('/panel/delete_product/<product_id>')
 def delete_product(product_id: int):
+    if 'username' not in session:
+        return redirect(url_for('index'))
 
     conn = get_db_connection()
     cursor = conn.cursor()
