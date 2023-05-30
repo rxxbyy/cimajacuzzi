@@ -11,3 +11,8 @@ class AuthForm(FlaskForm):
                         ])
     confirm = PasswordField('Confirmar contraseña',
                         validators=[DataRequired()])
+    
+class ProductForm(FlaskForm):
+    product_name = StringField('Nombre del producto', validators=[DataRequired()])
+    product_price = StringField('Precio del producto', validators=[DataRequired()])
+    product_desc = StringField('Descripción del producto', validators=[DataRequired()])

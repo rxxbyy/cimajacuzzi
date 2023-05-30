@@ -3,31 +3,30 @@
 {% block title %} Inicio {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 {% endblock %}
 
-
 {% block body %}
-
-{% if 'username' in session %}
-<p class="">Hello, {{ session['username'] }}</p>
-<section>
-    <div id = "register">
-        <a href="{{url_for('logout')}}">Cerrar sesión</a>
-    </div>
+<div class="separator"></div>
+<section id="info">
+    <h3>¿Qué es Cimajacuzzi?</h3>
+    <p>
+        Cimajacuzzi es un proyecto que facilita la compra y venta en un área de la Facultad de Ciencias
+        de la Universidad Autónoma de Baja California popularmente conocida como "Jacuzzi".
+    </p>
 </section>
-{% else %}
-<br>
-<section>
-    <div id = "register">
-        <a href="{{ url_for('auth')}}">Autenticarse</a>
-    </div>
-</section>
-{% endif %}
-
-<section id = "vendedores">
-    <h3 id="vendedores-title">Vendedores del Jacuzzi:</h3>
-    
+<section id="sellers">
+    <h3>Lista de vendedores</h3>
+    <section id="sellers-list">
+        {% if sellers %}
+            {% for seller in sellers %}
+                {{ seller.seller_name }}
+                <br>
+            {% endfor %}
+        {% else %}
+            <p>No hay vendedores para mostrar :(</p>
+        {% endif %}
+    </section>
 </section>
 
 

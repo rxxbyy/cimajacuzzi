@@ -11,13 +11,33 @@
     {% endblock %}
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css')}}">
     {% block styles %}
     {% endblock %}
 </head>
 <body>
-    <section id = "top-bar">
-        <header id="title-header">
-            <a href="{{ url_for('index')}}">Cimajacuzzi</a>
+    <section id="top-bar">
+        <header>
+            <a id="main-title" href="{{ url_for('index')}}">CIMAJACUZZI</a>
+            <nav id="top-menu">
+                <ul id="menu-options">
+                    <li>
+                        <a href="{{ url_for('index') }}">INICIO</a>
+                    </li>
+                    {% if 'username' not in session %}
+                    <li>
+                        <a href="{{ url_for('auth') }}">INGRESAR</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{{ url_for('panel')}}">PANEL</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('logout')}}">SALIR</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </header>
     </section>
     {% block body %}

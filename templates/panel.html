@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "form_macros.html" import render_field %}
+
+{% block title %} Panel {% endblock %}
+
+{% block body %}
+<div class="separator"></div>
+<section id="add-product-form">
+    <h2>Bienvenido, {{ session['username'] }}</h2>
+    <form action="{{ url_for('add_product')}}" method="get">
+        <h4>Añadir un producto</h4>
+        {{ product_form.csrf_token }}
+        {{ render_field(product_form.product_name) }}
+        {{ render_field(product_form.product_price) }}
+        {{ render_field(product_form.product_desc) }}
+        <button type="submit">Añadir</button>
+    </form>
+</section>
+<aside id="prod-aside">
+    <header id="setup-hour">
+    </header>
+</aside>
+{% endblock %}

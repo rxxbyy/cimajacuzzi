@@ -4,7 +4,7 @@
 {% block title %} Autenticacion {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -23,14 +23,10 @@
         {% endif %}
     {% endwith %}
 </section>
-<section id = "register-section">
-    <form action="{{ url_for('auth') }}", method="POST">
-        {{ auth_form.csrf_token }}
-        <br><br>
-        {{ render_field(auth_form.seller_name) }}
-        <br><br>
-        {{ render_field(auth_form.seller_pass) }}
-        <br><br>
+<section>
+    <div class="separator"></div>
+    <form id="auth-form" action="{{ url_for('auth') }}", method="POST">
+        <h3>INGRESAR</h3>
         <ul class="form-messages">
             {% for error in auth_form.seller_pass.errors %}
             <li class="form-message">
@@ -38,9 +34,13 @@
             </li>
             {% endfor %}
         </ul>
+        {{ auth_form.csrf_token }}
+        {{ render_field(auth_form.seller_name) }}
+        {{ render_field(auth_form.seller_pass) }}
         {{ render_field(auth_form.confirm) }}
-        <br><br>
-        <button type="submit" class ="botones">Registrarme</button>
+        <br>
+        <br>
+        <button type="submit">Enviar</button>
     </form>
 </section>
 
