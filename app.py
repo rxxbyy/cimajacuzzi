@@ -7,7 +7,7 @@ from passlib.hash import pbkdf2_sha256
 
 from flask import (Flask, render_template, session, request,
     redirect, url_for)
-from forms import AuthForm, ProductForm
+from forms import AuthForm, ProductForm, HourForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_urlsafe())
@@ -35,6 +35,9 @@ def index() -> Callable:
     print(sellers)
     conn.commit()
     conn.close()
+
+    session['username'] = 'manuel'
+    session['user_id'] = 1
     return render_template('index.html', session=session, sellers=sellers)
 
 
@@ -77,9 +80,18 @@ def panel() -> Callable:
     if 'username' not in session:
         return redirect(url_for('index'))
 
+
+    conn = get_db_connection()
+    products = conn.execute('SELECT * FROM product WHERE product_owner = ?', (session.get('user_id'),)).fetchall()
+
     product_form = ProductForm(request.form)
+    schedule_form = HourForm(request.form)
     
-    return render_template('panel.html', session=session, product_form=product_form)
+    return render_template('panel.html', 
+                           session=session,
+                           product_form=product_form,
+                           schedule_form=schedule_form,
+                           products=products)
 
 @app.route('/panel/add_product')
 def add_product():
@@ -90,13 +102,71 @@ def add_product():
     product_name = request.args['product_name']
     product_price = request.args['product_price']
     product_desc = request.args['product_desc']
-    product_exists = True
+    product_exists = request.args.get('product_exists', False)
     
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('INSERT INTO product (product_id, product_owner, product_name, product_price, '
                    'product_desc, product_exists) VALUES (NULL, ?, ?, ?, ?, ?)',
                    (owner_id, product_name, product_price, product_desc, product_exists))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('panel'))
+
+@app.route('/panel/edit_product/<product_id>', methods=['GET', 'POST'])
+def edit_product(product_id: int):
+    product_form = ProductForm(request.form)
+
+    conn = get_db_connection()
+    cur_product = conn.execute('SELECT * FROM product WHERE product_id=?', (product_id,)).fetchone()
+
+    if request.method == 'POST' and product_form.validate_on_submit():
+        product_name = product_form.product_name.data
+        product_price = product_form.product_price.data
+        product_desc = product_form.product_desc.data
+        product_exists = product_form.product_exists.data
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute('UPDATE product SET product_name=?, product_price=?, product_desc=?,'
+                       ' product_exists=? WHERE product_id=?',
+                       (product_name, product_price, product_desc, product_exists, product_id))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('panel'))
+
+    return render_template('edit_product.html',
+                           product_form=product_form,
+                           product_id=product_id,
+                           cur_product=cur_product)
+
+@app.route('/panel/delete_product/<product_id>')
+def delete_product(product_id: int):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM product WHERE product_id = ?', (product_id,))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('panel'))
+
+@app.route('/panel/set_hour')
+def set_hour():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+    
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    start_hour = request.args['start_hour']
+    leaving_hour = request.args['leaving_hour']
+
+    cursor.execute('UPDATE seller SET start_hour = ?, end_hour = ? WHERE seller_id = ?',
+                    (start_hour, leaving_hour, session.get('user_id')))
     conn.commit()
     conn.close()
 

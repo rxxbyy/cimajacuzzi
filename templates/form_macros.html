@@ -1,6 +1,10 @@
-{% macro render_field(field) %}
+{% macro render_field(field, in_value=None) %}
 {{ field.label }}
+{% if in_value != None %}
+{{field(value=in_value)|safe }}
+{% else %}
 {{field(**kwargs)|safe }}
+{% endif %}
 {% if field.erros %}
     <ul>
     {% for error in field.errors %}

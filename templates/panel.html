@@ -13,11 +13,41 @@
         {{ render_field(product_form.product_name) }}
         {{ render_field(product_form.product_price) }}
         {{ render_field(product_form.product_desc) }}
+        {{ render_field(product_form.product_exists) }}
         <button type="submit">Añadir</button>
     </form>
 </section>
 <aside id="prod-aside">
     <header id="setup-hour">
+        <form action="{{ url_for('set_hour')}}" method="get">
+            <h3>Configura tu horario de hoy</h3>
+            {{ schedule_form.csrf_token }}
+            {{ render_field(schedule_form.start_hour) }}
+            {{ render_field(schedule_form.leaving_hour) }}
+            <button type="submit">Enviar</button>
+        </form>
     </header>
+    <div id="prod-list-container">
+        <ul id="prod-list">
+            {% for product in products %}
+            <div class="product-container">
+                <a href="{{ url_for('edit_product', product_id=product['product_id'])}}">
+                    <li class="product">
+                        {{ product['product_name'] }}
+                        {{ product['product_price'] }}
+                        {% if product['product_exists'] %}
+                        ✅
+                        {% else %}
+                        ❌
+                        {% endif %}
+                    </li>
+                </a>
+                <a href="{{ url_for('delete_product', product_id=product['product_id']) }}">
+                    🗑
+                </a>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
 </aside>
 {% endblock %}

@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms.widgets import NumberInput
+from wtforms import StringField, PasswordField, IntegerField, BooleanField
 from wtforms.validators import DataRequired, Length, EqualTo
 
 class AuthForm(FlaskForm):
@@ -14,5 +15,10 @@ class AuthForm(FlaskForm):
     
 class ProductForm(FlaskForm):
     product_name = StringField('Nombre del producto', validators=[DataRequired()])
-    product_price = StringField('Precio del producto', validators=[DataRequired()])
+    product_price = IntegerField('Precio del producto', validators=[DataRequired()])
     product_desc = StringField('Descripción del producto', validators=[DataRequired()])
+    product_exists = BooleanField('En existencia')
+
+class HourForm(FlaskForm):
+    start_hour = IntegerField('Hora de entrada', validators=[DataRequired()])
+    leaving_hour = IntegerField('Hora de salida', validators=[DataRequired()])
