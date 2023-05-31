@@ -19,7 +19,11 @@
         <ul id="prod-list">
             {% for product in seller_products %}
             <div class="product-container">
+                {% if product['product_exists'] %}
                 <li class="product">
+                {% else %}
+                <li class="product not-exists">
+                {% endif %}
                     <div class="product-price">
                         {{ product['product_price'] }}$
                     </div>
@@ -31,11 +35,8 @@
                     {% else %}
                     <span class="status">Agotado</span>
                     <style>
-                        .product-container {
+                        .not-exists {
                             opacity: 0.5;
-                        }
-
-                        .product-name {
                             text-decoration: line-through;
                         }
                     </style>
